@@ -8,7 +8,7 @@ on:
 
 jobs:
   check_and_execute:
-    runs-on: self-hosted
+    runs-on:ubuntu
 
     steps:
       - name: Check out repository
@@ -19,7 +19,7 @@ jobs:
           export NVM_DIR="/home/ubuntu/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-          sudo apt install nvm  18.19
+          sudo apt-get install nvm  18.19
 
       - name: Check for modifications in microservice
         run: |
@@ -31,8 +31,8 @@ jobs:
               cp ../.env .
               node -v
               npm i
-              sudo npm install -g serverless
-              sudo npm install --save-dev serverless-plugin-typescript
+              sudo apt-get install npm -g serverless
+              sudo apt-get install npm --save-dev serverless-plugin-typescript
               serverless deploy --config serverless-dev.yml
               pwd
               ls
