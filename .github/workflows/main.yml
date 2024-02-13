@@ -8,7 +8,7 @@ on:
 
 jobs:
   check_and_execute:
-    runs-on:ubuntu
+    runs-on:self-hosted
 
     steps:
       - name: Check out repository
