@@ -20,10 +20,9 @@ jobs:
          sudo apt install build-essential libssl-dev -y
          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
          source ~/.bashrc
-         nvm --version
          nvm install 18 -y
          nvm use 18
-
+         nvm --version
 
       - name: Check for modifications in microservice
         run: |
