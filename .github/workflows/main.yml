@@ -7,20 +7,20 @@ on:
 
 
 jobs:
-  check_and_execute:
-    steps:
+check_and_execute:
+runs-on: self-hosted
+     steps:
       - name: Check out repository
         uses: actions/checkout@v2
         
       - name: Setup Node
         run: |
          export NVM_DIR="/home/ubuntu/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ]
-           "$NVM_DIR/nvm.sh"
-          [ -s "$NVM_DIR/bash_completion" ]
-          "$NVM_DIR/bash_completion"
-           nvm install  18.19
-           nvm use 18.19
+         [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+         [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+         nvm install 18
+         nvm use 18
+
 
       - name: Check for modifications in microservice
         run: |
