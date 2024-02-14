@@ -8,8 +8,6 @@ on:
 
 jobs:
   check_and_execute:
-    runs-on: self-hosted
-
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
