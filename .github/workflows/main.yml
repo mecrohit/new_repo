@@ -22,7 +22,7 @@ jobs:
            "$NVM_DIR/nvm.sh"
           [ -s "$NVM_DIR/bash_completion" ]
           "$NVM_DIR/bash_completion"
-          sudo apt-get install nvm 18.19
+         nvm install  18.19
 
       - name: Check for modifications in microservice
         run: |
