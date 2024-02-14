@@ -8,9 +8,9 @@ on:
 
 jobs:
   check_and_execute:
-  runs-on:
-   self-hosted
-steps:
+    runs-on: self-hosted
+
+    steps:
       - name: Check out repository
         uses: actions/checkout@v2
         
@@ -19,20 +19,20 @@ steps:
           export NVM_DIR="/home/ubuntu/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-          sudo apt-get install nvm  18.19
+          nvm install 18.19
 
       - name: Check for modifications in microservice
         run: |
           for service in config-service; do
-            if git diff --name-only HEAD  | grep -q "^${service}/"; then
+            if git diff --name-only main | grep -q "^${service}/"; then
               echo "Changes detected in ${service}
               cd "${service}" || exit 1
               # Run your commands here for each microservice
               cp ../.env .
               node -v
               npm i
-              sudo apt-get install npm -g serverless
-              sudo apt-get install npm --save-dev serverless-plugin-typescript
+              sudo npm install -g serverless
+              sudo npm install --save-dev serverless-plugin-typescript
               serverless deploy --config serverless-dev.yml
               pwd
               ls
