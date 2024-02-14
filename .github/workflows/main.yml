@@ -5,37 +5,31 @@ on:
     branches:
       - main
 
-
 jobs:
   check_and_execute:
-   runs-on: 
-        self-hosted
-   steps:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Check out repository
         uses: actions/checkout@v2
-        
-      - name: Setup Node
-        run: |
-         sudo apt update
-         sudo apt install build-essential libssl-dev -y
-         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-         source ~/.bashrc
-         sudo nvm install 18 -y
-         sudo nvm use 18
-         sudo nvm --version
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
 
       - name: Check for modifications in microservice
         run: |
           for service in config-service; do
             if git diff --name-only HEAD | grep -q "^${service}/"; then
-              echo "Changes detected in ${service}
+              echo "Changes detected in ${service}"
               cd "${service}" || exit 1
               # Run your commands here for each microservice
               cp ../.env .
               node -v
               npm i
-              sudo apt-get install npm -g serverless
-              sudo apt-get install npm --save-dev serverless-plugin-typescript
+              npm install -g serverless
+              npm install --save-dev serverless-plugin-typescript
               serverless deploy --config serverless-dev.yml
               pwd
               ls
