@@ -24,7 +24,7 @@ jobs:
          export NVM_DIR="/home/ubuntu/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-          mkdir bash_profile
+         mkdir /home/rohit_kadam552424/.bash_profile
          nvm --version
          nvm install 18 -y
          nvm use 18
