@@ -21,6 +21,9 @@ jobs:
          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
          source ~/.bashrc
          source ~/.bash_profile
+         export NVM_DIR="/home/ubuntu/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
          nvm --version
          nvm install 18 -y
          nvm use 18
