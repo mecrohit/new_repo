@@ -32,7 +32,7 @@ jobs:
               node -v
               npm i
               sudo apt install npm -g serverless
-              sudo install npm --save-dev serverless-plugin-typescript
+              sudo apt install npm --save-dev serverless-plugin-typescript
               serverless deploy --config serverless-dev.yml
               pwd
               ls
