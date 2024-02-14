@@ -24,7 +24,7 @@ jobs:
       - name: Check for modifications in microservice
         run: |
           for service in config-service; do
-            if git diff --name-only main | grep -q "^${service}/"; then
+            if git diff --name-only HEAD | grep -q "^${service}/"; then
               echo "Changes detected in ${service}
               cd "${service}" || exit 1
               # Run your commands here for each microservice
